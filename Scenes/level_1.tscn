@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://nltafjqelj1y" path="res://Sprites/Items/Checkpoints/Checkpoint/Checkpoint (Flag Idle)(64x64).png" id="7_3au0l"]
 [ext_resource type="Script" path="res://Scripts/flag.gd" id="7_7xmsr"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4dn7h"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bw862"]
 texture = ExtResource("3_6lfwn")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -272,7 +272,7 @@ texture = ExtResource("3_6lfwn")
 
 [sub_resource type="TileSet" id="TileSet_ghfce"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_4dn7h")
+sources/0 = SubResource("TileSetAtlasSource_bw862")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_chhxd"]
 atlas = ExtResource("7_3au0l")
