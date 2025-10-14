@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dj4lhqqbr7y16"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_4n0ko"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_omrhs"]
+radius = 17.0
+height = 68.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iqjg2"]
+size = Vector2(1149, 34)
+
+[node name="Level 1" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(644, 297)
+script = ExtResource("1_4n0ko")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CapsuleShape2D_omrhs")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(573, 659)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(5, -72)
+shape = SubResource("RectangleShape2D_iqjg2")

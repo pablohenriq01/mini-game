@@ -1,0 +1,105 @@
+extends CharacterBody2D
+
+var jump_velocity = -300
+
+var dir 
+var gravity = 980
+var speed = 160
+var jump = 1
+
+var is_alive = true
+
+func _ready() -> void:
+	pass
+
+func _physics_process(delta: float) -> void:
+	
+	move(delta)
+	fall()
+	if is_alive:
+		animations()
+	pass
+	
+
+func move(delta):
+	
+	if is_alive:
+		dir = Input.get_axis("Left", "Right")
+	
+	if dir:
+		velocity.x = dir * speed
+	else:
+		velocity.x = 0
+	if is_alive:
+		if Input.is_action_just_pressed("Jump") and jump > 0:
+			velocity.y = jump_velocity
+			if jump > 0 :
+				jump -= 1
+			
+	if not is_on_floor():
+		velocity.y += gravity * delta
+	
+	if is_on_floor():
+		jump =1 
+	move_and_slide()	
+	
+	pass
+	
+func animations():
+	
+	if velocity.x != 0 and is_on_floor():
+		$AnimatedSprite2D.play("Run")
+
+	elif velocity.x == 0 and is_on_floor():
+		$AnimatedSprite2D.play("Idle")
+		
+	elif not is_on_floor() and jump >= 1:
+		$AnimatedSprite2D.play("Jump")
+		
+	if dir > 0 :
+		$AnimatedSprite2D.flip_h = false
+	elif dir < 0 :
+		$AnimatedSprite2D.flip_h = true
+	pass
+	
+func die():
+	
+	is_alive = false
+	$AnimatedSprite2D.play("Hit")
+	$CollisionShape2D.queue_free()
+	$Area2D.queue_free()
+	
+	velocity.y = jump_velocity
+	
+	camera_zoom()
+	restart(0.8)
+	pass
+
+func camera_zoom():
+	
+	var zoom_value = 1.5
+	
+	$Camera2D.zoom = Vector2(zoom_value, zoom_value)
+	Engine.time_scale = 0.5
+		
+	Engine.time_scale = 1
+	
+	await get_tree().create_timer(1).timeout
+	$Camera2D.zoom = Vector2(1, 1)
+
+	pass
+	
+	
+func restart(time: float):
+	
+	
+	await get_tree().create_timer(time).timeout
+	get_tree().reload_current_scene()
+	
+	pass
+
+func fall():
+	if global_position.y >= 214 and is_alive:
+		die()
+		
+	pass
