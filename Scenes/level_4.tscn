@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://d11lyvb23lxd5"]
+[gd_scene load_steps=24 format=4 uid="uid://d11lyvb23lxd5"]
 
 [ext_resource type="Texture2D" uid="uid://dt4fh5h2k6kwh" path="res://Sprites/Background/Brown.png" id="1_7gxyf"]
 [ext_resource type="PackedScene" uid="uid://cc0irg4s4qbkw" path="res://Prefabs/player.tscn" id="2_p1gnd"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dsp2d8u4e1nmd" path="res://Prefabs/fruit.tscn" id="6_kgyan"]
 [ext_resource type="Script" path="res://Scripts/flag.gd" id="7_6dh1w"]
 [ext_resource type="Texture2D" uid="uid://nltafjqelj1y" path="res://Sprites/Items/Checkpoints/Checkpoint/Checkpoint (Flag Idle)(64x64).png" id="8_sgogr"]
+[ext_resource type="PackedScene" uid="uid://uaf48exa7ll5" path="res://Prefabs/saw.tscn" id="9_3vovg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7ofgq"]
 texture = ExtResource("4_g7p10")
@@ -415,5 +416,10 @@ animation = &"idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flag"]
 position = Vector2(2.5, 11.5)
 shape = SubResource("RectangleShape2D_bqlj7")
+
+[node name="Saw" parent="." instance=ExtResource("9_3vovg")]
+position = Vector2(395, 148)
+speed = 150.0
+distance = 205.0
 
 [connection signal="area_entered" from="Flag" to="Flag" method="_on_area_entered"]
